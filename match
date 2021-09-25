@@ -1,0 +1,23 @@
+#!/bin/bash
+
+URL="https://raw.githubusercontent.com/rgrunbla/TAC-Files/main/"
+
+KNOWN_HASHES=${1:-known_hashes}
+
+main() {
+	get blacklist_qrcode.json	> banned_tac
+	get blacklist_qrcode_tacv.json	> banned_tacv
+
+	egrep -f $KNOWN_HASHES banned_* | \
+	awk -F : '{print $2, $1}' | sort
+}
+
+get() {
+	curl -sL $URL/$1 | json2text | sort
+}
+
+json2text() {
+	jq -r '.[] | @text'
+}
+
+main
