@@ -8,8 +8,8 @@ main() {
 	get blacklist_qrcode.json	> banned_tac
 	get blacklist_qrcode_tacv.json	> banned_tacv
 
-	egrep -f $KNOWN_HASHES banned_* | \
-	awk -F : '{print $2, $1}' | sort
+	cat banned_* | egrep -f $KNOWN_HASHES | sort | uniq -c | \
+	awk '{print $2, "(" $1 ")"}'
 }
 
 get() {
