@@ -13,7 +13,7 @@ main() {
 }
 
 get() {
-	curl -sL $URL/$1 | json2text | sort
+	curl -sL $URL/$1 | json2text | sort -u
 }
 
 json2text() {
