@@ -13,11 +13,15 @@ main() {
 }
 
 get() {
-	curl -sL $URL/$1 | json2text | sort -u
+	curl -sL $URL/$1 | ${1/.json} | sort -u
 }
 
-json2text() {
+blacklist_qrcode() {
 	jq -r '.[] | @text'
+}
+
+blacklist_qrcode_tacv() {
+	jq -r '.elements[] | select(.active) | .hash'
 }
 
 main
