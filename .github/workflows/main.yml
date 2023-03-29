@@ -1,4 +1,4 @@
-name: 'TAC/TAC-Vérif known banned QR-codes'
+name: 'BRAV-M polling'
 on:
   push:
   schedule:
