@@ -9,11 +9,12 @@ jobs:
   brav-m:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
 
       - run: |
+          : fetch brav-m petition signatures count
           (
           printf "$(date +'%F %T')\t"
           curl -s https://petitions.assemblee-nationale.fr/initiatives/i-1319 \
